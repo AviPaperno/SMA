@@ -1,0 +1,20 @@
+{% extends "bootstrap/base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}SMA - 2018{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+        <div>
+    <div class="col-md-2 col-md-offset-5">
+      <center>
+        <h1>Register</h1>
+    {{ wtf.quick_form(form) }}
+          </center>
+    </div>
+        </div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask,render_template,flash
+from flask import Flask,render_template,flash,redirect
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import RadioField,SubmitField,StringField
@@ -12,7 +12,15 @@ valid_keys = ['123','456']
 
 app.config['SECRET_KEY'] = 'any secret string'
 
-app.config['list_of_bands'] = ['Каникулы','ee']
+app.config['list_of_bands'] = ['Skyride',
+ 'Просто Гриша',
+ 'LYCØRIS',
+ 'Осколки зеркала культуры',
+ 'Shape of songs',
+ 'Roquette',
+ 'One Piece Band',
+ 'M.O.O.N.',
+ 'Всё никак']
 
 class SMAForm(FlaskForm):
     band = RadioField('Label', choices=[(i,i) for i in app.config['list_of_bands']],default=app.config['list_of_bands'][0], validators=[DataRequired()])
@@ -24,6 +32,7 @@ def hello_world():
     sma_form = SMAForm()
     if sma_form.validate_on_submit():
         print(sma_form.band.data, sma_form.validation_key.data)
+        return render_template('thanks.html')
     else:
         for error in sma_form.errors:
             print(error)
@@ -31,4 +40,4 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',port = 5050)
